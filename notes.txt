@@ -1,0 +1,28 @@
+similar to sports section on alltop.com
+- news from espn
+- bleacher report
+- sbnation
+- ultiworld
+- reddit/r/ultimate
+
+
+fetch info from these sites and then display elsewhere
+
+implement some background process for aggregation
+'requests' library for sending http requests
+'beautifulsoup' for parse and scraping
+'celery' or 'apscheduler' for background process
+use some database to store info
+add subscription tool so that subscriber can receive articles in email at end of day
+
+
+
+initial thoughts on task breakdonwn
+1. parse one site
+2. post info on own page
+3. store info in db
+4. web front query db and post it to front
+5. add query and page refresh as background process
+6. add subscription feature
+7. add more sites
+
