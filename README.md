@@ -8,3 +8,4 @@ features to add:
 - have back end update db at some interval
 - have front end web service query db and post results
 - subscription service for emails
+- REST API support
