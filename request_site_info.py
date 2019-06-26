@@ -1,9 +1,8 @@
 import requests 
 from bs4 import BeautifulSoup 
-  
+import mysql.connector
+
 URL = "http://www.ultiworld.com"
-
-
 
 def generate_ultiworld_articles(URL):
 		r = requests.get(URL) 
@@ -31,3 +30,4 @@ def generate_ultiworld_articles(URL):
 		return articles
 
 my_ultiworld_articles = generate_ultiworld_articles(URL)
+print my_ultiworld_articles
