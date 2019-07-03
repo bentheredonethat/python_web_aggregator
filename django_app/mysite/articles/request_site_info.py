@@ -1,10 +1,15 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-
-import requests
+import requests 
 from bs4 import BeautifulSoup 
 
-# Create your views here.
+import datetime
+'''
+fields needed from model:
+	text (link) - done
+	title - done
+	pub_date -- need this
+	site_name -- infer this from link
+'''
+
 def generate_ultiworld_articles():
 	URL = "http://www.ultiworld.com"
 	r = requests.get(URL) 
@@ -33,17 +38,12 @@ def generate_ultiworld_articles():
 			new_article['pub_date'] = '18-06-12 10:34:09 PM'
 			articles.append(new_article)
 	return articles
+my_ultiworld_articles = generate_ultiworld_articles()
+#print ("a = Article(pub_date=\""+pub_date=timezone.now())
+print("a_pub_date="+str(datetime.datetime.now()))
+print("site_name=\""+my_ultiworld_articles[0]['site_info']+"\"")
+print("href=\""+repr(my_ultiworld_articles[0]['href'])+"\"")
+my_ultiworld_articles[0]['text'] = my_ultiworld_articles[0]['text'].lstrip().rstrip()
+print("title=\""+repr(my_ultiworld_articles[0]['text'])+"\"")
+print("a = Article(pub_date=a_pub_date, site_name=a_site_name, text=a_text, href=a_href)")
 
-def detail(request, article_id):
-    return HttpResponse("You're looking at article %s." % article_id)
-
-def results(request, article_id):
-    response = "You're looking at the results of article %s."
-    return HttpResponse(response % article_id)
-
-def index(request):
-	# here also display article info
-    ret = generate_ultiworld_articles()
-#	latest_articles = Articles.objects.order_by('-pub_date')[:5]
-    output = ', '.join([q.question_text for q in latest_question_list])
-    return HttpResponse(ret)
