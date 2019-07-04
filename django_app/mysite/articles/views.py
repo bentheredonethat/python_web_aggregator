@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 import requests
 from bs4 import BeautifulSoup 
-
+from .models import Article, Site
 # Create your views here.
 def generate_ultiworld_articles():
 	URL = "http://www.ultiworld.com"
@@ -44,6 +44,10 @@ def results(request, article_id):
 def index(request):
 	# here also display article info
     ret = generate_ultiworld_articles()
-#	latest_articles = Articles.objects.order_by('-pub_date')[:5]
-    output = ', '.join([q.question_text for q in latest_question_list])
-    return HttpResponse(ret)
+    #latest_articles = Article.objects.order_by('-pub_date')[:5]
+    #output = ', '.join([a.text for a in latest_articles])
+    #return HttpResponse(ret)
+    latest_articles = Article.objects.order_by('-pub_date')[:5]
+    context = {'latest_articles': latest_articles}
+    #return HttpResponse(template.render(context, request))
+    return render(request, 'articles/index.html', context)

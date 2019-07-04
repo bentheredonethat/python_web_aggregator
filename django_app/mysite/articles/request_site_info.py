@@ -40,10 +40,13 @@ def generate_ultiworld_articles():
 	return articles
 my_ultiworld_articles = generate_ultiworld_articles()
 #print ("a = Article(pub_date=\""+pub_date=timezone.now())
-print("a_pub_date="+str(datetime.datetime.now()))
-print("site_name=\""+my_ultiworld_articles[0]['site_info']+"\"")
-print("href=\""+repr(my_ultiworld_articles[0]['href'])+"\"")
-my_ultiworld_articles[0]['text'] = my_ultiworld_articles[0]['text'].lstrip().rstrip()
-print("title=\""+repr(my_ultiworld_articles[0]['text'])+"\"")
-print("a = Article(pub_date=a_pub_date, site_name=a_site_name, text=a_text, href=a_href)")
+print("a_pub_date=\""+str(datetime.datetime.now())+"\"")
+
+for i in my_ultiworld_articles:
+#print("a_pub_date="+str(datetime.datetime.now()))
+	print("a_href=\""+i['href']+"\"")
+	i['text'] = i['text'].string.strip()
+	print("a_text=\""+repr(i['text'])+"\"")
+	print("a = Article( text=a_href, title=a_text, pub_date=a_pub_date, site_id=s)")
+	print("a.save()")
 
